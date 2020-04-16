@@ -22,6 +22,9 @@ spring:
         min-idle: 0
       shutdown-timeout: 100ms
 
+server:
+  port: 8081
+
 mybatis-plus:
   mapper-locations: mybatis-mapper/*.xml
 
@@ -45,6 +48,9 @@ spring:
         max-idle: 8
         min-idle: 0
       shutdown-timeout: 100ms
+
+server:
+  port: 8081
 
 mybatis-plus:
   mapper-locations: mybatis-mapper/*.xml
