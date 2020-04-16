@@ -11,11 +11,12 @@ import java.io.Serializable;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class User implements Serializable {
+public class Product implements Serializable {
 
-    @TableId(type = IdType.AUTO)
+    @TableId(type= IdType.AUTO)
     private Long id;
-    private String nickname;
-    private String avatar;
+    private String name;
+    private String coverImage;
+    private int price;
 
 }
