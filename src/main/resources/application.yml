@@ -10,6 +10,7 @@ spring:
     url: jdbc:mysql://localhost/test_spring_cloud?serverTimezone=CTT
     driver-class-name: com.mysql.cj.jdbc.Driver
     type: com.zaxxer.hikari.HikariDataSource
+    initialization-mode: always
   redis:
     host: localhost
     port: 6379
@@ -21,6 +22,10 @@ spring:
         max-idle: 8
         min-idle: 0
       shutdown-timeout: 100ms
+  flyway:
+    baseline-on-migrate: true
+    validate-on-migrate: false
+    clean-disabled: true
 
 server:
   port: 8081
