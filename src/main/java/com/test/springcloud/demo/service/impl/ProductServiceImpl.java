@@ -32,4 +32,9 @@ public class ProductServiceImpl extends ServiceImpl<ProductMapper, Product> impl
         this.removeById(id);
     }
 
+    @Override
+    public void addProduct(Product product) {
+        this.save(product);
+    }
+
 }

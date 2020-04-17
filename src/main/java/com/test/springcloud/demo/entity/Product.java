@@ -17,6 +17,6 @@ public class Product implements Serializable {
     private Long id;
     private String name;
     private String coverImage;
-    private int price;
+    private Integer price;
 
 }

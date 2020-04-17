@@ -2,6 +2,7 @@ package com.test.springcloud.demo.controller;
 
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.test.springcloud.demo.entity.Product;
+import com.test.springcloud.demo.entity.ProductComment;
 import com.test.springcloud.demo.service.ProductService;
 import com.test.springcloud.demo.util.response.AjaxResponseBody;
 import com.test.springcloud.demo.util.response.Result;
@@ -17,13 +18,22 @@ public class ProductController {
     @Autowired
     ProductService productService;
 
-    @GetMapping
+    @GetMapping("/list")
     public Result<Page<Product>> findAll(Integer index){
         Page<Product> products = productService.getPage(index);
         if( null != products ){
             return Result.success(products);
         }
         return Result.failure(null);
+    }
+
+    @PostMapping
+    public Result<Void> addProduct(@RequestBody Product product){
+        if(product.getName()!=null&&product.getPrice()!=null){
+            productService.addProduct(product);
+            return Result.success();
+        }
+        return Result.failure();
     }
 
     @GetMapping("/{id}")

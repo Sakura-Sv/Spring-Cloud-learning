@@ -22,7 +22,7 @@ public class UserController {
     @Autowired
     UserService userService;
 
-    @GetMapping
+    @GetMapping("/list")
     public Result<List<UserDto>> findAll(Integer index){
         Page<User> users = userService.getPage(index);
         if(users != null){

@@ -7,4 +7,6 @@ public interface ProductCommentService {
 
     Page<ProductComment> getPage(Integer index);
 
+    void postComment(ProductComment comment);
+
 }
