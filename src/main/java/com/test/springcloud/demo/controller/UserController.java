@@ -23,13 +23,12 @@ public class UserController {
     UserService userService;
 
     @GetMapping
-    @SuppressWarnings("unchecked")
     public Result<List<UserDto>> findAll(Integer index){
         Page<User> users = userService.getPage(index);
         if(users != null){
             return Result.success(users.getRecords().stream().map(UserDto::new).collect(Collectors.toList()));
         }
-        return Result.success(Collections.EMPTY_LIST);
+        return Result.failure();
     }
 
     @GetMapping("/{id}")
