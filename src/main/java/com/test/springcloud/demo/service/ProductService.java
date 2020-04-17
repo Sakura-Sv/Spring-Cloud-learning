@@ -11,6 +11,6 @@ public interface ProductService{
 
     Product saveProduct(Product product);
 
-    Boolean deleteProduct(Long id);
+    void deleteProduct(Long id);
 
 }

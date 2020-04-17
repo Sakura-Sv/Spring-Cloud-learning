@@ -10,8 +10,8 @@ public interface UserService  {
 
     Page<User> getPage(Integer index);
 
-    User save(UserDto userDto);
+    User saveUser(UserDto userDto);
 
-    void delete(Long id);
+    void deleteUser(Long id);
 
 }

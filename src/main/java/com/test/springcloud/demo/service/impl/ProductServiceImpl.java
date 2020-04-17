@@ -28,9 +28,8 @@ public class ProductServiceImpl extends ServiceImpl<ProductMapper, Product> impl
     }
 
     @Override
-    public Boolean deleteProduct(Long id) {
+    public void deleteProduct(Long id) {
         this.removeById(id);
-        return true;
     }
 
 }

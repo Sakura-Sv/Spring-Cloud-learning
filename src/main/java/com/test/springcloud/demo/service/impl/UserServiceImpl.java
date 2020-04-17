@@ -30,14 +30,14 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
 
     @Override
     @Transactional
-    public User save(UserDto userDto) {
+    public User saveUser(UserDto userDto) {
         User user = new User(userDto);
         this.saveOrUpdate(user);
         return user;
     }
 
     @Override
-    public void delete(Long id) {
+    public void deleteUser(Long id) {
         userMapper.deleteById(id);
     }
 }

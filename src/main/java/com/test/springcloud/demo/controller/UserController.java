@@ -41,13 +41,13 @@ public class UserController {
     public Result<UserDto> update(@PathVariable Long id,
                                   @RequestBody UserDto userDto){
         userDto.setId(id);
-        User user = userService.save(userDto);
+        User user = userService.saveUser(userDto);
         return (null != user)? Result.success(new UserDto(user)) : Result.failure(ResultStatus.WRONG_PARAMETERS);
     }
 
     @DeleteMapping("/{id}")
     public Result<Boolean> delete(@PathVariable Long id){
-        userService.delete(id);
+        userService.deleteUser(id);
         return Result.success(true);
     }
 
