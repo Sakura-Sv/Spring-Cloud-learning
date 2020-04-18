@@ -2,6 +2,7 @@ package com.cloud.service.product.controller;
 
 import com.alibaba.fastjson.JSONObject;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
+import com.cloud.service.product.client.UserClient;
 import com.cloud.service.product.entity.ProductComment;
 import com.cloud.service.product.entity.UserDto;
 import com.cloud.service.product.service.ProductCommentService;
@@ -21,7 +22,7 @@ public class ProductCommentController {
     private ProductCommentService productCommentService;
 
     @Autowired
-    private RestTemplate restTemplate;
+    private UserClient userClient;
 
     @GetMapping
     public Result<Page<ProductComment>> findAll(Integer index) {
@@ -41,10 +42,9 @@ public class ProductCommentController {
         return Result.failure();
     }
 
+    @GetMapping("/test/{id}")
     public UserDto loadUser(@PathVariable Long id){
-        JSONObject data = this.restTemplate.getForObject("http://UserService/user/{id}",
-                JSONObject.class,
-                id);
+        JSONObject data = userClient.getInfo(id);
         return Result.parseData(data, UserDto.class);
     }
 

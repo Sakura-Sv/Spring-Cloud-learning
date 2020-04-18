@@ -1,9 +1,7 @@
 package com.test.springcloud.demo.util.response;
 
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
-import lombok.ToString;
+import com.alibaba.fastjson.JSONObject;
+import lombok.*;
 
 @Getter
 @Setter
@@ -57,5 +55,13 @@ public class Result<T> {
             return new Result<T>(ResultStatus.INTERNAL_SERVER_ERROR, null);
         }
         return new Result<T>(resultStatus, data);
+    }
+
+    @SneakyThrows
+    public static <T> T parseData(JSONObject jsonObject, Class<T> clazz){
+        if(null == jsonObject){
+            return null;
+        }
+        return jsonObject.getObject("data", clazz);
     }
 }
