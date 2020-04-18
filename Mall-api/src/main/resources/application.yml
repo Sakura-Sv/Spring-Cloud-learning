@@ -4,6 +4,8 @@ spring:
 ---
 spring:
   profiles: dev
+  application:
+    name: mallservice
   datasource:
     username: guest
     password: ${MYSQL_PASSWORD:dev}
@@ -27,8 +29,15 @@ spring:
     validate-on-migrate: false
     clean-disabled: true
 
+eureka:
+  instance:
+    prefer-ip-address: true
+  client:
+    service-url:
+      defaultZone: http://localhost:8260/eureka
+
 server:
-  port: 8081
+  port: 8360
 
 mybatis-plus:
   mapper-locations: mybatis-mapper/*.xml
