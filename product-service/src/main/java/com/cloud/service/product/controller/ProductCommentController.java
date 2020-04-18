@@ -1,12 +1,15 @@
 package com.cloud.service.product.controller;
 
+import com.alibaba.fastjson.JSONObject;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.cloud.service.product.entity.ProductComment;
+import com.cloud.service.product.entity.UserDto;
 import com.cloud.service.product.service.ProductCommentService;
 import com.cloud.service.product.util.response.AjaxResponseBody;
 import com.cloud.service.product.util.response.Result;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.client.RestTemplate;
 
 
 @AjaxResponseBody
@@ -15,7 +18,10 @@ import org.springframework.web.bind.annotation.*;
 public class ProductCommentController {
 
     @Autowired
-    ProductCommentService productCommentService;
+    private ProductCommentService productCommentService;
+
+    @Autowired
+    private RestTemplate restTemplate;
 
     @GetMapping
     public Result<Page<ProductComment>> findAll(Integer index) {
@@ -33,6 +39,13 @@ public class ProductCommentController {
             return Result.success();
         }
         return Result.failure();
+    }
+
+    public UserDto loadUser(@PathVariable Long id){
+        JSONObject data = this.restTemplate.getForObject("http://UserService/user/{id}",
+                JSONObject.class,
+                id);
+        return Result.parseData(data, UserDto.class);
     }
 
 }

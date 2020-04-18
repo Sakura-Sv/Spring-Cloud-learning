@@ -15,7 +15,7 @@ import org.springframework.web.bind.annotation.*;
 public class ProductController {
 
     @Autowired
-    ProductService productService;
+    private ProductService productService;
 
     @GetMapping("/list")
     public Result<Page<Product>> findAll(Integer index) {
