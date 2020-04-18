@@ -23,30 +23,30 @@ public class UserController {
     UserService userService;
 
     @GetMapping("/list")
-    public Result<List<UserDto>> findAll(Integer index){
+    public Result<List<UserDto>> findAll(Integer index) {
         Page<User> users = userService.getPage(index);
-        if(users != null){
+        if (users != null) {
             return Result.success(users.getRecords().stream().map(UserDto::new).collect(Collectors.toList()));
         }
         return Result.failure();
     }
 
     @GetMapping("/{id}")
-    public Result<UserDto> detail(@PathVariable Long id){
+    public Result<UserDto> detail(@PathVariable Long id) {
         User user = userService.getUserInfo(id);
-        return (null != user)? Result.success(new UserDto(user)) : Result.failure(ResultStatus.WRONG_PARAMETERS);
+        return (null != user) ? Result.success(new UserDto(user)) : Result.failure(ResultStatus.WRONG_PARAMETERS);
     }
 
     @PostMapping("/{id}")
     public Result<UserDto> update(@PathVariable Long id,
-                                  @RequestBody UserDto userDto){
+                                  @RequestBody UserDto userDto) {
         userDto.setId(id);
         User user = userService.saveUser(userDto);
-        return (null != user)? Result.success(new UserDto(user)) : Result.failure(ResultStatus.WRONG_PARAMETERS);
+        return (null != user) ? Result.success(new UserDto(user)) : Result.failure(ResultStatus.WRONG_PARAMETERS);
     }
 
     @DeleteMapping("/{id}")
-    public Result<Boolean> delete(@PathVariable Long id){
+    public Result<Boolean> delete(@PathVariable Long id) {
         userService.deleteUser(id);
         return Result.success(true);
     }

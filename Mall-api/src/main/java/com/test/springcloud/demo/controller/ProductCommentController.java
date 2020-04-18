@@ -21,17 +21,17 @@ public class ProductCommentController {
     ProductCommentService productCommentService;
 
     @GetMapping
-    public Result<Page<ProductComment>> findAll(Integer index){
+    public Result<Page<ProductComment>> findAll(Integer index) {
         Page<ProductComment> products = productCommentService.getPage(index);
-        if( null != products ){
+        if (null != products) {
             return Result.success(products);
         }
         return Result.failure(null);
     }
 
     @PostMapping
-    public Result<Void> postComment(@RequestBody ProductComment comment){
-        if(comment.getAuthorId()!=null&&comment.getProductId()!=null){
+    public Result<Void> postComment(@RequestBody ProductComment comment) {
+        if (comment.getAuthorId() != null && comment.getProductId() != null) {
             productCommentService.postComment(comment);
             return Result.success();
         }

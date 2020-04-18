@@ -17,9 +17,9 @@ public class UserDto implements Serializable {
     private String nickname;
     private String avatar;
 
-    public UserDto(User user){
-        this.id= user.getId();
-        this.nickname= user.getNickname();
-        this.avatar= user.getAvatar();
+    public UserDto(User user) {
+        this.id = user.getId();
+        this.nickname = user.getNickname();
+        this.avatar = user.getAvatar();
     }
 }

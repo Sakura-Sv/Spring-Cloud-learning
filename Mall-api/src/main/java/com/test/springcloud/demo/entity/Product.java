@@ -13,7 +13,7 @@ import java.io.Serializable;
 @AllArgsConstructor
 public class Product implements Serializable {
 
-    @TableId(type= IdType.AUTO)
+    @TableId(type = IdType.AUTO)
     private Long id;
     private String name;
     private String coverImage;

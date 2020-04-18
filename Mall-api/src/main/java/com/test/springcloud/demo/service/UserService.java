@@ -4,7 +4,7 @@ import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.test.springcloud.demo.entity.User;
 import com.test.springcloud.demo.entity.UserDto;
 
-public interface UserService  {
+public interface UserService {
 
     User getUserInfo(Long id);
 

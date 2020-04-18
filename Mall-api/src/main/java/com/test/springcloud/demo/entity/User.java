@@ -18,7 +18,7 @@ public class User implements Serializable {
     private String nickname;
     private String avatar;
 
-    public User(UserDto userDto){
+    public User(UserDto userDto) {
         this.id = userDto.getId();
         this.nickname = userDto.getNickname();
         this.avatar = userDto.getAvatar();

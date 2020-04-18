@@ -1,0 +1,48 @@
+spring:
+  profiles:
+    active: dev
+---
+spring:
+  profiles: dev
+  application:
+    name: productservice
+  datasource:
+    username: guest
+    password: ${MYSQL_PASSWORD:dev}
+    url: jdbc:mysql://localhost/test_spring_cloud?serverTimezone=CTT
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    type: com.zaxxer.hikari.HikariDataSource
+    initialization-mode: always
+  flyway:
+    baseline-on-migrate: true
+    validate-on-migrate: false
+    clean-disabled: true
+
+eureka:
+  instance:
+    prefer-ip-address: true
+  client:
+    service-url:
+      defaultZone: http://localhost:8260/eureka
+
+server:
+  port: 8370
+
+mybatis-plus:
+  mapper-locations: mybatis-mapper/*.xml
+
+---
+spring:
+  profiles: pro
+  datasource:
+    username: guest
+    password: ${MYSQL_PASSWORD:pro}
+    url: jdbc:mysql://lz-mysql/test_spring_cloud?serverTimezone=CTT
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    type: com.zaxxer.hikari.HikariDataSource
+
+server:
+  port: 8081
+
+mybatis-plus:
+  mapper-locations: mybatis-mapper/*.xml

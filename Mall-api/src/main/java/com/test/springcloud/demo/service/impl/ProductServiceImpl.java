@@ -22,7 +22,7 @@ public class ProductServiceImpl extends ServiceImpl<ProductMapper, Product> impl
     }
 
     @Override
-    public Product saveProduct(Product product){
+    public Product saveProduct(Product product) {
         this.saveOrUpdate(product);
         return product;
     }

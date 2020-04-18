@@ -19,17 +19,17 @@ public class ProductController {
     ProductService productService;
 
     @GetMapping("/list")
-    public Result<Page<Product>> findAll(Integer index){
+    public Result<Page<Product>> findAll(Integer index) {
         Page<Product> products = productService.getPage(index);
-        if( null != products ){
+        if (null != products) {
             return Result.success(products);
         }
         return Result.failure(null);
     }
 
     @PostMapping
-    public Result<Void> addProduct(@RequestBody Product product){
-        if(product.getName()!=null&&product.getPrice()!=null){
+    public Result<Void> addProduct(@RequestBody Product product) {
+        if (product.getName() != null && product.getPrice() != null) {
             productService.addProduct(product);
             return Result.success();
         }
@@ -37,21 +37,21 @@ public class ProductController {
     }
 
     @GetMapping("/{id}")
-    public Result<Product> detail(@PathVariable Long id){
+    public Result<Product> detail(@PathVariable Long id) {
         Product product = productService.getProductById(id);
-        return (null != product)? Result.success(product) : Result.failure(ResultStatus.WRONG_PARAMETERS);
+        return (null != product) ? Result.success(product) : Result.failure(ResultStatus.WRONG_PARAMETERS);
     }
 
     @PostMapping("/{id}")
     public Result<Product> update(@PathVariable Long id,
-                                  @RequestBody Product product){
+                                  @RequestBody Product product) {
         product.setId(id);
         product = productService.saveProduct(product);
-        return (null != product)? Result.success(product) : Result.failure(ResultStatus.WRONG_PARAMETERS);
+        return (null != product) ? Result.success(product) : Result.failure(ResultStatus.WRONG_PARAMETERS);
     }
 
     @DeleteMapping("/{id}")
-    public Result<Boolean> delete(@PathVariable Long id){
+    public Result<Boolean> delete(@PathVariable Long id) {
         productService.deleteProduct(id);
         return Result.success(true);
     }
