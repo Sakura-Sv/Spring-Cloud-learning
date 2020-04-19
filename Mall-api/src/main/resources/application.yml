@@ -5,7 +5,7 @@ spring:
 spring:
   profiles: dev
   application:
-    name: userservice
+    name: user-service
   datasource:
     username: guest
     password: ${MYSQL_PASSWORD:dev}
